@@ -89,10 +89,11 @@ try:
     if counter_file not in files_list:
         with open(counter_file, "w") as counter:
             counter.write(str(0))
-    else:
-        start_time = time.time()
-        main_task(data_file_or)
-        result_csv(db, pipeline, header)
-        time_csv(start_time)
+    
+    start_time = time.time()
+    main_task(data_file_or)
+    result_csv(db, pipeline, header)
+    time_csv(start_time)
+    os.remove(counter_file)
 except pymongo.errors.ServerSelectionTimeoutError as S:
     print("Connection error")
